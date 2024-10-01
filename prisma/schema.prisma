@@ -1,0 +1,50 @@
+
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model printfulOrder {
+  id               Int      @id @default(autoincrement())
+  externalId       String   @unique
+  status           String
+  shippingMethod   String
+  shippingService   String
+  createdAt        DateTime
+  updatedAt        DateTime
+  recipientName    String
+  recipientAddress String
+  recipientCity    String
+  recipientState   String
+  recipientCountry String
+  recipientZip     String
+  recipientPhone   String
+  recipientEmail   String
+  totalCost        Float
+  currency         String
+  costsCurrency    String?
+  costsSubtotal    Float?
+  costsDiscount    Float?
+  costsShipping    Float?
+  costsDigitization Float?
+  costsAdditional   Float?
+  costsTax        String?
+  costsVat        Float?
+  costsTotal      Float?
+  retailCurrency  String?
+  retailSubtotal  Float?
+ retailDiscount   Float?
+ retailShipping   Float?
+ retailTotal      Float?
+  dashboardUrl     String?
+  trackingUrl          String?
+  shipDate             DateTime?
+  hasIncompleteItems   Boolean   @default(false)
+  hasDiscontinuedItems Boolean   @default(false)
+  hasOutOfStockItems   Boolean   @default(false)
+}

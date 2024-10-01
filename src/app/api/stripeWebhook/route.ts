@@ -1,3 +1,4 @@
+import { createOrderFromPrintful } from "@/lib/actions/orders";
 import { Product } from "@/lib/types/Product";
 import { NextResponse, NextRequest } from "next/server";
 
@@ -52,6 +53,8 @@ export const POST = async (request: NextRequest) => {
 
       if (printfulResponse.ok) {
         console.log("Printful Order Created:", printfulOrder);
+        //Save to Prisma DB
+        const savePrintful = await createOrderFromPrintful(printfulOrder)
       } else {
         console.error("Failed to create Printful order:", printfulOrder);
       }

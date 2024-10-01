@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from 'sonner'
-import { ClerkProvider } from '@clerk/nextjs'
 import ReduxProviders from "@/lib/providers/providers";
 import NavbarDashboard from "@/components/global/navbar/navbar";
 
@@ -19,7 +18,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
     <html lang="en">
       <body className={inter.className}>
         <ReduxProviders>
@@ -31,6 +29,5 @@ export default function RootLayout({
         <Toaster/>
       </body>
     </html>
-    </ClerkProvider>
   );
 }

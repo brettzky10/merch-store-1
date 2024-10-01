@@ -22,9 +22,9 @@ export function MainNav({
             active: pathname === `/`,
         },
         {
-            href: `/buy`,
-            label: 'Buy Credits',
-            active: pathname === `/buy`,
+            href: `/about`,
+            label: 'About',
+            active: pathname === `/about`,
         },
         {
             href: `/terms`,
