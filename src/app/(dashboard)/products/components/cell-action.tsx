@@ -4,7 +4,7 @@ import { Copy, Edit, MoreHorizontal, Trash, Wand2 } from "lucide-react";
 //import { toast } from "react-hot-toast";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
-import axios from "axios";
+//import axios from "axios";
 
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { ProductColumn } from "./columns";
@@ -36,7 +36,7 @@ export const CellAction: React.FC<CellActionProps> = ({
     };
 
     const onDelete = async ()=> {
-        try{
+        /* try{
             setLoading(true);
             await axios.delete(`/api/${params.storeId}/products/${data.id}`);
             router.refresh();
@@ -46,7 +46,7 @@ export const CellAction: React.FC<CellActionProps> = ({
         } finally{
             setLoading(false);
             setOpen(false);
-        }
+        } */
     };
 
     return (

@@ -10,7 +10,7 @@ import { ProductColumn, columns } from "./columns";
 import { DataTable } from "@/components/ui/data-table";
 //import { ApiList } from "@/components/ui/api-list";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import AddProductDrawer from "@/components/store/products/add-product-drawer";
+import AddProductDrawer from "@/components/products/add-product-drawer";
 /* import { Label } from "@/components/ui/label";
 import AddMapModal from "@/components/modals/add-map-modal";
 import DrawMap from "@/components/tools/draw";
