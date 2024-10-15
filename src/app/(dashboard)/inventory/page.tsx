@@ -30,14 +30,14 @@ const InventoryPage = async ({
 
     const ownerInfo = await prismadb.owner.findUnique({
       where: {
-          userId: user.id,
+          user_id: user.id,
           email: user.email,
       },
     })
 
     const products = await prismadb.owner.findUnique({
         where: {
-            userId: user.id,
+            user_id: user.id,
             email: user.email
         },
         select: {

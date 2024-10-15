@@ -54,7 +54,7 @@ model owner {
   id                String     @id @default(uuid())
   email             String?    @unique
   name              String?
-  userId            String
+  user_id            String
   customerId        String?    @unique
   orders            order[]
   products          product[]

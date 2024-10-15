@@ -14,7 +14,7 @@ export const AddProduct = async (name: string, description: string, priceInCents
   
         const ownerInfo = await prismadb.owner.findUnique({
           where: {
-              userId: user.id,
+              user_id: user.id,
               email: user.email,
           },
         })
@@ -91,7 +91,7 @@ export async function saveProduct(formData: FormData) {
 
     const ownerInfo = await prismadb.owner.findUnique({
       where: {
-          userId: user.id,
+          user_id: user.id,
           email: user.email,
       },
     })
