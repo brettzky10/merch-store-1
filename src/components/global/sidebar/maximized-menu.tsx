@@ -33,9 +33,9 @@ const SIDE_BAR_MENU: SIDE_BAR_MENU_PROPS[] = [
     path: `dashboard`,
   },
   {
-    label: 'Products',
+    label: 'Inventory',
     icon: <ShirtIcon />,
-    path: `products`,
+    path: `inventory`,
   },
   /* {
     label: 'Discounts',

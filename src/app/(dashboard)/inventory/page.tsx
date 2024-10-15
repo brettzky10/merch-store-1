@@ -15,7 +15,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/supabase-server";
 
 
-const ProductsPage = async ({
+const InventoryPage = async ({
     
 }: {
     
@@ -83,4 +83,4 @@ const ProductsPage = async ({
     )
 }
 
-export default ProductsPage;
+export default InventoryPage;

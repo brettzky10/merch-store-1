@@ -36,9 +36,9 @@ export const MinMenu = ({
       path: `dashboard`,
     },
     {
-      label: 'Products',
+      label: 'Inventory',
       icon: <ShirtIcon />,
-      path: `products`,
+      path: `inventory`,
     },
     /* {
       label: 'Discounts',
