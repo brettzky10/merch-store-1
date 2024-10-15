@@ -1,5 +1,6 @@
 //import { createClient } from "@/lib/supabase/supabase-server";
 
+import NavbarDashboard from "@/components/global/navbar/navbar";
 import SideBar from "@/components/global/sidebar";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
@@ -24,17 +25,10 @@ export default function DashboardLayout({
 
     return (
       <>
-        <div className="relative">
-        
-                {/* <Navbar /> */}
-                <div className="absolute h-full hidden md:flex min-h-[91vh] max-h-screen z-50">
-                    <SideBar />
-                </div>
-                <ScrollArea className="h-[100vh] bg-ghost ml-5">
-                    {children}
-                </ScrollArea>
-                
-            </div>
+        <NavbarDashboard/>
+          <div className="mt-16">
+          {children}
+          </div>
         </>
     );
   }

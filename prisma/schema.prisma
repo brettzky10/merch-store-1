@@ -48,3 +48,72 @@ model printfulOrder {
   hasDiscontinuedItems Boolean   @default(false)
   hasOutOfStockItems   Boolean   @default(false)
 }
+
+
+model owner {
+  id                String     @id @default(uuid())
+  email             String?    @unique
+  name              String?
+  userId            String
+  customerId        String?    @unique
+  orders            order[]
+  products          product[]
+  
+
+  createdAt         DateTime   @default(now())
+  updatedAt         DateTime   @updatedAt
+}
+
+
+model product {
+  id          String @id @default(uuid())
+  name          String
+  priceInCents  Int
+  quantity      Int  @default(1)
+  imagePath     String
+  description String @default("")
+  isAvailableForPurchase     Boolean @default(true)
+  discountCodes discount[]
+
+  owner               owner     @relation( fields: [ownerId], references: [id])
+  ownerId             String
+
+  createdAt         DateTime   @default(now())
+  updatedAt         DateTime   @updatedAt
+}
+
+model discount {
+  id             String           @id @default(uuid())
+  code           String           @unique
+  discountAmount Int
+  discountType   discountCodeType
+  uses           Int              @default(0)
+  isActive       Boolean          @default(true)
+  allProducts    Boolean          @default(false)
+  createdAt      DateTime         @default(now())
+  limit          Int?
+  expiresAt      DateTime?
+  storeId        String
+  products       product[]
+  orders          order[]
+}
+
+enum discountCodeType {
+  PERCENTAGE
+  FIXED
+}
+
+
+model order{
+  id String @id @default(uuid())
+  owner  owner     @relation(fields: [ownerId], references: [id])
+  ownerId   String
+  isPaid Boolean @default(false)
+  phone String @default("")
+  address String @default("")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  discountCodeId String?
+  discountCode   discount? @relation(fields: [discountCodeId], references: [id], onDelete: Restrict)
+
+}

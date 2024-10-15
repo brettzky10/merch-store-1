@@ -21,10 +21,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ReduxProviders>
-          <NavbarDashboard/>
-          <div className="mt-16">
+          
+          
           {children}
-          </div>
+          
         </ReduxProviders>
         <Toaster/>
       </body>
