@@ -13,7 +13,7 @@ export const WaitingForMagicLink = ({
           <h1 className="text-xl">Check your email to continue</h1>
           <div className="flex flex-col gap-2">
             <p className="text-sm">
-              We've emailed you a magic link to access your account.
+              We&apos;ve emailed you a magic link to access your account.
             </p>
             <p className="text-xs opacity-60">
               Hint: it might be in your spam folder.

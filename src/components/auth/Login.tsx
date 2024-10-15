@@ -17,7 +17,7 @@ import { FiArrowLeft } from "react-icons/fi";
 import Link from "next/link";
 import { twMerge } from "tailwind-merge";
 import { Separator } from "../ui/separator";
-import { ButtonLoader } from "../ui/button-loader";
+//import { ButtonLoader } from "../ui/button-loader";
 
 type Inputs = {
   email: string;
@@ -174,8 +174,8 @@ export const Login = ({
               </div>
             </div>
 
-            <ButtonLoader
-              isLoading={isSubmitting}
+            <Button
+              //isLoading={isSubmitting}
               disabled={isSubmitting}
               //variant="outline"
               className={twMerge(
@@ -200,7 +200,7 @@ export const Login = ({
               type="submit"
             >
               Continue with Email
-            </ButtonLoader>
+            </Button>
           </form>
           <p className="text-xs opacity-60 hover:underline">
             <Link href={"/legal/terms"}>
