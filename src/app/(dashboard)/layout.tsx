@@ -1,16 +1,17 @@
-//import { createClient } from "@/lib/supabase/supabase-server";
+import { createClient } from "@/lib/supabase/supabase-server";
 
 import SideBar from "@/components/global/sidebar";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { redirect } from "next/navigation";
 
 
-export default function DashboardLayout({
+export default async function DashboardLayout({
     children,
   }: {
     children: React.ReactNode;
   }) {
 
-    /* const supabase = createClient();
+    const supabase = createClient();
 
         const {
             data: { user },
@@ -18,7 +19,7 @@ export default function DashboardLayout({
     
         if (!user) {
             redirect('/login');
-        } */
+        }
 
 
 

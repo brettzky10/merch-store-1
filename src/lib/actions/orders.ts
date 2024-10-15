@@ -129,6 +129,6 @@ export async function createOrderFromPrintful(printfulData: any) {
 
 
 
-  revalidatePath('/dashboard/orders')
+  revalidatePath('/dashboard')
   return order
 }

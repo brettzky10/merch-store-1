@@ -53,7 +53,7 @@ export default async function LoginPage({
       </div>
       {/* End Clients Section */}
     </div>
-    <CornerGrid />
+    {/* <CornerGrid /> */}
     {/* End Hero */}
   </>
   );
