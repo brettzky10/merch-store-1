@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/supabase-server";
+//import { createClient } from "@/lib/supabase/supabase-server";
 
 import SideBar from "@/components/global/sidebar";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -24,14 +24,14 @@ export default async function DashboardLayout({
         } */
 
     //Kinde Auth
-    const { getUser } = getKindeServerSession()
+    /* const { getUser } = getKindeServerSession()
     const user = await getUser()
   
     const ADMIN_EMAIL = process.env.ADMIN_EMAIL
   
     if (!user || user.email !== ADMIN_EMAIL) {
       return notFound()
-    }
+    } */
 
 
     return (
