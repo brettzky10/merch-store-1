@@ -146,14 +146,14 @@ export async function getCustomOrders() {
       throw new Error('Unauthorized');
     }
 
-    let owner = await prismadb.owner.findUnique({
+    const owner = await prismadb.owner.findUnique({
       where: { 
         id: user.id,
         user_id: user.id
     },
     });
 
-    if (!owner) {
+    /* if (!owner) {
       // If the owner doesn't exist, create a new one
       owner = await prismadb.owner.create({
         data: {
@@ -164,10 +164,10 @@ export async function getCustomOrders() {
             : user.email,
         },
       });
-    }
+    } */
 
     const orders = await prismadb.order.findMany({
-      where: { ownerId: owner.id },
+      where: { ownerId: owner?.id },
       include: {
         shippingAddress: true,
         billingAddress: true,
