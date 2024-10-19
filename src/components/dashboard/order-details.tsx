@@ -36,7 +36,7 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
           <CardDescription>Date: {new Date(order.createdAt).toLocaleDateString()}</CardDescription>
         </div>
         <div className="ml-auto flex items-center gap-1">
-          {order.dashboardUrl 
+         {/*  {order.dashboardUrl 
           ? <Button size="sm" variant="outline" className="h-8 gap-1" asChild>
           <Link href={`${order.trackingUrl}`}>
             <Truck className="h-3.5 w-3.5" />
@@ -60,8 +60,25 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
               </TooltipContent>
             </Tooltip>
             </TooltipProvider>
-          }
+          } */}
           
+
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                <Button size="sm" variant="outline" className="h-8 gap-1" disabled>
+                  <Truck className="h-3.5 w-3.5" />
+                  <span className="lg:sr-only xl:not-sr-only xl:whitespace-nowrap">
+                    Track Order
+                  </span>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                No tracking number yet
+              </TooltipContent>
+            </Tooltip>
+            </TooltipProvider>
+
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button size="icon" variant="outline" className="h-8 w-8">

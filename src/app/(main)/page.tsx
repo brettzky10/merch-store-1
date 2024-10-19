@@ -1,3 +1,5 @@
+import Footer from '@/components/global/footer'
+import FooterSection from '@/components/global/footer/footer-two'
 import { Icons } from '@/components/global/icons'
 import MaxWidthWrapper from '@/components/global/max-width-wrapper'
 import Phone from '@/components/products/cover/phone'
@@ -29,6 +31,16 @@ export default function Home() {
                 CaseCobra allows you to protect your memories, not just your
                 phone case.
               </p>
+              <div className='flex justify-start'>
+                <Link
+                  className={buttonVariants({
+                    size: 'lg',
+                    className: 'mx-auto mt-8',
+                  })}
+                  href='/configure/upload'>
+                  Create your case now <ArrowRight className='h-4 w-4 ml-1.5' />
+                </Link>
+              </div>
 
               <ul className='mt-8 space-y-2 text-left font-medium flex flex-col items-center sm:items-start'>
                 <div className='space-y-2'>
@@ -266,6 +278,9 @@ export default function Home() {
             </div>
           </ul>
         </MaxWidthWrapper>
+      </section>
+      <section>
+        <FooterSection/>
       </section>
     </div>
   )

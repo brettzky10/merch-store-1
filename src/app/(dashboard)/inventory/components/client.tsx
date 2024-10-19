@@ -25,8 +25,8 @@ export const ProductClient: React.FC<ProductClientProps> = ({
     data
 }) => {
 
-    const router = useRouter();
-    const params = useParams();
+    //const router = useRouter();
+    //const params = useParams();
 
     return(
         <>

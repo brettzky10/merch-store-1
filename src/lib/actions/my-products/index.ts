@@ -2,21 +2,25 @@
 
 import prismadb from "@/lib/prismadb"
 import { createClient } from "@/lib/supabase/supabase-server";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { User } from "lucide-react";
 
-export const AddProduct = async (name: string, description: string, priceInCents: number, imagePath: string, quantity: number) => {
-    const supabase = createClient();
+/* export const AddProduct = async (name: string, description: string, priceInCents: number, imagePath: string, quantity: number) => {
+    
   
-    const {
-        data: { user },
-    } = await supabase.auth.getUser();
-      if (!user) return
-      try {
+    const { getUser } = getKindeServerSession()
+    const user = await getUser()
+
+      try { 
   
         const ownerInfo = await prismadb.owner.findUnique({
           where: {
+            id: user.id,
               user_id: user.id,
-              email: user.email,
           },
+          select: {
+            id: true
+          }
         })
     
         if (ownerInfo) {
@@ -30,11 +34,8 @@ export const AddProduct = async (name: string, description: string, priceInCents
                   quantity,
                   imagePath,
               },
-            })
-    
-            if (newProduct) {
-              return { status: 200, message: 'Product successfully added' }
-            }
+            });
+
           } else {
           return {
             status: 400,
@@ -48,7 +49,7 @@ export const AddProduct = async (name: string, description: string, priceInCents
           status: 400,
           message: 'Product add error',
         }
-    }
+    } */
 
 
 
@@ -82,17 +83,21 @@ export async function saveProduct(formData: FormData) {
   const imagePath = data?.path
   */
 
-  const supabase = createClient();
+  //const supabase = createClient();
   
-  const {
+  /* const {
       data: { user },
   } = await supabase.auth.getUser();
-    if (!user) return
+    if (!user) return */
+    const { getUser } = getKindeServerSession()
+    const user = await getUser()
+
 
     const ownerInfo = await prismadb.owner.findUnique({
       where: {
+        id: user.id,
           user_id: user.id,
-          email: user.email,
+          //email: user.email,
       },
     })
 

@@ -1,4 +1,4 @@
-import { createOrderFromPrintful } from "@/lib/actions/orders";
+import { createOrderFromPrintful } from "@/lib/actions/dashboard/orders";
 import { Product } from "@/lib/types/Product";
 import { NextResponse, NextRequest } from "next/server";
 

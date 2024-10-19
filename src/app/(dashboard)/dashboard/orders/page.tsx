@@ -1,4 +1,4 @@
-import { getOrders } from '@/lib/actions/orders'
+import { getOrders } from '@/lib/actions/dashboard/orders'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 

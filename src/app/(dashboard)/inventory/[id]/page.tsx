@@ -1,5 +1,5 @@
-/* import prismadb from "@/lib/prismadb";
-import { ProductForm } from "@/components/products/add-product-form";
+import prismadb from "@/lib/prismadb";
+//import { ProductForm } from "@/components/products/add-product-form";
 
 const ProductPage = async ({
     params
@@ -16,21 +16,11 @@ const ProductPage = async ({
     return(
         <div className="flex-col">
             <div className="flex-1 space-y-4 p-8 pt-6">
-                <ProductForm
+                {/* <ProductForm
                     initialData={product}
-                />
+                /> */}
             </div>
         </div>
     );
 };
-export default ProductPage; */
-
-import React from 'react'
-
-const page = () => {
-  return (
-    <div>page</div>
-  )
-}
-
-export default page
+export default ProductPage;
