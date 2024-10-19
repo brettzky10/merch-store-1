@@ -2,7 +2,8 @@ import { createClient } from "@/lib/supabase/supabase-server";
 
 import SideBar from "@/components/global/sidebar";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 
 export default async function DashboardLayout({
@@ -11,7 +12,8 @@ export default async function DashboardLayout({
     children: React.ReactNode;
   }) {
 
-    const supabase = createClient();
+    //Supabase Auth
+    /* const supabase = createClient();
 
         const {
             data: { user },
@@ -19,8 +21,17 @@ export default async function DashboardLayout({
     
         if (!user) {
             redirect('/login');
-        }
+        } */
 
+    //Kinde Auth
+    const { getUser } = getKindeServerSession()
+    const user = await getUser()
+  
+    const ADMIN_EMAIL = process.env.ADMIN_EMAIL
+  
+    if (!user || user.email !== ADMIN_EMAIL) {
+      return notFound()
+    }
 
 
     return (

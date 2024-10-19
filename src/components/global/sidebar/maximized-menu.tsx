@@ -1,7 +1,7 @@
 'use client';
 
 //import { SIDE_BAR_MENU } from '@/lib/sidebar-constants'
-import { Box, FilePlus, LogOut, Menu, Receipt, Settings, ShirtIcon, Store, Tag, Wand2 } from 'lucide-react'
+import { Box, FilePlus, LogOut, Menu, Receipt, Settings, Shield, ShirtIcon, Store, Tag, Wand2 } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
 import MenuItem from './menu-item'
@@ -31,6 +31,11 @@ const SIDE_BAR_MENU: SIDE_BAR_MENU_PROPS[] = [
     label: 'Dashboard',
     icon: <Store/>,
     path: `dashboard`,
+  },
+  {
+    label: 'Admin',
+    icon: <Shield />,
+    path: `admin`,
   },
   {
     label: 'Inventory',

@@ -9,56 +9,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model printfulOrder {
-  id               Int      @id @default(autoincrement())
-  externalId       String   @unique
-  status           String
-  shippingMethod   String
-  shippingService   String
-  createdAt        DateTime
-  updatedAt        DateTime
-  recipientName    String
-  recipientAddress String
-  recipientCity    String
-  recipientState   String
-  recipientCountry String
-  recipientZip     String
-  recipientPhone   String
-  recipientEmail   String
-  totalCost        Float
-  currency         String
-  costsCurrency    String?
-  costsSubtotal    Float?
-  costsDiscount    Float?
-  costsShipping    Float?
-  costsDigitization Float?
-  costsAdditional   Float?
-  costsTax        String?
-  costsVat        Float?
-  costsTotal      Float?
-  retailCurrency  String?
-  retailSubtotal  Float?
- retailDiscount   Float?
- retailShipping   Float?
- retailTotal      Float?
-  dashboardUrl     String?
-  trackingUrl          String?
-  shipDate             DateTime?
-  hasIncompleteItems   Boolean   @default(false)
-  hasDiscontinuedItems Boolean   @default(false)
-  hasOutOfStockItems   Boolean   @default(false)
-}
-
 
 model owner {
   id                String     @id @default(uuid())
   email             String?    @unique
+  user_id           String
   name              String?
-  user_id            String
   customerId        String?    @unique
   orders            order[]
   products          product[]
-  
 
   createdAt         DateTime   @default(now())
   updatedAt         DateTime   @updatedAt
@@ -108,12 +67,135 @@ model order{
   id String @id @default(uuid())
   owner  owner     @relation(fields: [ownerId], references: [id])
   ownerId   String
-  isPaid Boolean @default(false)
-  phone String @default("")
-  address String @default("")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  discountCodeId String?
-  discountCode   discount? @relation(fields: [discountCodeId], references: [id], onDelete: Restrict)
+  amount          Float
+  isPaid          Boolean @default(false)
+  phone           String @default("")
 
+  status          orderStatus   @default(awaiting_shipment)
+
+  shippingAddress   shippingAddress? @relation(fields: [shippingAddressId], references: [id])
+  shippingAddressId String?
+  billingAddress    billingAddress?  @relation(fields: [billingAddressId], references: [id])
+  billingAddressId  String?
+
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  configurationId String
+  configuration   configuration @relation(fields: [configurationId], references: [id])
+
+  discountCodeId  String?
+  discountCode    discount? @relation(fields: [discountCodeId], references: [id], onDelete: Restrict)
+
+}
+
+
+model shippingAddress {
+  id          String  @id @default(cuid())
+  name        String
+  street      String
+  city        String
+  postalCode  String
+  country     String
+  state       String?
+  phoneNumber String?
+  orders      order[]
+}
+
+model billingAddress {
+  id          String  @id @default(cuid())
+  name        String
+  street      String
+  city        String
+  postalCode  String
+  country     String
+  state       String?
+  phoneNumber String?
+  orders      order[]
+}
+
+model configuration {
+  id              String        @id @default(cuid())
+  width           Int
+  height          Int
+  imageUrl        String
+  color           caseColor?
+  model           phoneModel?
+  material        caseMaterial?
+  finish          caseFinish?
+  croppedImageUrl String?
+  Order           order[]
+}
+
+enum orderStatus {
+  fulfilled
+  shipped
+  awaiting_shipment
+}
+
+enum phoneModel {
+  iphonex
+  iphone11
+  iphone12
+  iphone13
+  iphone14
+  iphone15
+}
+
+enum caseMaterial {
+  silicone
+  polycarbonate
+}
+
+enum caseFinish {
+  smooth
+  textured
+}
+
+enum caseColor {
+  black
+  blue
+  rose
+}
+
+
+model printfulOrder {
+  id               Int      @id @default(autoincrement())
+  externalId       String   @unique
+  status           String
+  shippingMethod   String
+  shippingService   String
+  createdAt        DateTime
+  updatedAt        DateTime
+  recipientName    String
+  recipientAddress String
+  recipientCity    String
+  recipientState   String
+  recipientCountry String
+  recipientZip     String
+  recipientPhone   String
+  recipientEmail   String
+  totalCost        Float
+  currency         String
+  costsCurrency    String?
+  costsSubtotal    Float?
+  costsDiscount    Float?
+  costsShipping    Float?
+  costsDigitization Float?
+  costsAdditional   Float?
+  costsTax        String?
+  costsVat        Float?
+  costsTotal      Float?
+  retailCurrency  String?
+  retailSubtotal  Float?
+  retailDiscount   Float?
+  retailShipping   Float?
+  retailTotal      Float?
+  dashboardUrl     String?
+  trackingUrl          String?
+  shipDate             DateTime?
+  hasIncompleteItems   Boolean   @default(false)
+  hasDiscontinuedItems Boolean   @default(false)
+  hasOutOfStockItems   Boolean   @default(false)
 }

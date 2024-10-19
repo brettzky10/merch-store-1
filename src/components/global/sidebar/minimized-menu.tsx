@@ -1,7 +1,7 @@
 //import { SIDE_BAR_MENU } from '@/lib/sidebar-constants'
 
 import React from 'react'
-import { Box, FilePlus, LogOut, Receipt, Settings, ShirtIcon, ShoppingBag, Store, StoreIcon, Tag, Wand2 } from 'lucide-react'
+import { Box, FilePlus, LogOut, Receipt, Settings, Shield, ShirtIcon, ShoppingBag, Store, StoreIcon, Tag, Wand2 } from 'lucide-react'
 import MenuItem from './menu-item'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { MenuLogoMin } from './menu-logo-min'
@@ -34,6 +34,11 @@ export const MinMenu = ({
       label: 'Dashboard',
       icon: <Store/>,
       path: `dashboard`,
+    },
+    {
+      label: 'Admin',
+      icon: <Shield />,
+      path: `admin`,
     },
     {
       label: 'Inventory',
