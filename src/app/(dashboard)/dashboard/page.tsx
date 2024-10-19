@@ -19,6 +19,18 @@ import { Progress } from '@/components/ui/progress'
 import { formatPrice } from '@/lib/utils'
 
 export default async function OrdersPage() {
+
+  
+ /*  const { getUser } = getKindeServerSession()
+    const user = await getUser()
+  
+    const ADMIN_EMAIL = process.env.ADMIN_EMAIL
+  
+    if (!user || user.email !== ADMIN_EMAIL) {
+      return notFound()
+    } */
+
+
   const [orders, ordersThisMonth, totalSalesThisMonth, customOrders ] = await Promise.all([
     getOrders(),
     getOrdersThisMonth(),
@@ -28,16 +40,8 @@ export default async function OrdersPage() {
   ])
   
 
-  const { getUser } = getKindeServerSession()
-    const user = await getUser()
   
-    const ADMIN_EMAIL = process.env.ADMIN_EMAIL
-  
-    if (!user || user.email !== ADMIN_EMAIL) {
-      return notFound()
-    }
-  
-    const customTotalOrders = await prismadb.order.findMany({
+/*     const customTotalOrders = await prismadb.order.findMany({
       where: {
         isPaid: true,
         createdAt: {
@@ -51,7 +55,7 @@ export default async function OrdersPage() {
         owner: true,
         shippingAddress: true,
       },
-    })
+    }) */
   
     const lastWeekSum = await prismadb.order.aggregate({
       where: {
