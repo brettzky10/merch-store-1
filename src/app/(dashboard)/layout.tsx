@@ -33,6 +33,12 @@ export default async function DashboardLayout({
       return notFound()
     }
 
+    console.log("user Id", user.id)
+
+    if (!user || !user.id) {
+      console.log('User on layout page is null or missing id'); // Add this line
+      throw new Error('Unauthorized');
+    }
 
     return (
       <>
