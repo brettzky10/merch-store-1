@@ -143,7 +143,7 @@ export async function getCustomOrders() {
     const user = await getUser();
 
     if (!user || !user.id) {
-      throw new Error('Unauthorized');
+      return;
     }
 
     try {
@@ -182,11 +182,12 @@ export async function getCustomOrders() {
       });
     return orders;
     }else{
-      throw new Error('Failed to fetch orders');
+      return;
     }
   } catch (error) {
     console.error('Failed to fetch orders:', error);
-    throw new Error('Failed to fetch orders');
+    return
+    //throw new Error('Failed to fetch orders');
   }
 }
 
@@ -199,7 +200,7 @@ export async function getCustomOrderStats() {
 
   if (!user || !user.id) {
     console.log("user Id", user.id)
-    throw new Error("Unauthorized")
+    //throw new Error("Unauthorized")
   }
 
   const owner = await prismadb.owner.findUnique({
@@ -207,7 +208,8 @@ export async function getCustomOrderStats() {
   })
 
   if (!owner) {
-    throw new Error("Owner not found")
+    return
+    //throw new Error("Owner not found")
   }
 
   const now = new Date()
@@ -268,16 +270,18 @@ export async function getRecentCustomOrders() {
   const { getUser } = getKindeServerSession()
   const user = await getUser()
 
-  /* if (!user || !user.id) {
-    throw new Error("Unauthorized")
-  } */
+  if (!user || !user.id) {
+    return
+    //throw new Error("Unauthorized")
+  }
 
   const owner = await prismadb.owner.findUnique({
     where: { id: user.id, user_id: user.id },
   })
 
   if (!owner) {
-    throw new Error("Owner not found")
+    return
+    //throw new Error("Owner not found")
   }
 
   const orders = await prismadb.order.findMany({
@@ -299,9 +303,10 @@ export async function updateOrderStatus(orderId: string, newStatus: orderStatus)
   const { getUser } = getKindeServerSession()
     const user = await getUser()
 
-   /*  if (!user || !user.id) {
-      throw new Error('Unauthorized')
-    } */
+    if (!user || !user.id) {
+      return
+      //throw new Error('Unauthorized')
+    }
 
 
 
@@ -312,7 +317,8 @@ export async function updateOrderStatus(orderId: string, newStatus: orderStatus)
     })
 
     if (!owner) {
-      throw new Error('Owner not found')
+      return
+      //throw new Error('Owner not found')
     }
 
     const updatedOrder = await prismadb.order.updateMany({
@@ -326,7 +332,8 @@ export async function updateOrderStatus(orderId: string, newStatus: orderStatus)
     })
 
     if (updatedOrder.count === 0) {
-      throw new Error('Order not found or not authorized to update')
+      return
+      //throw new Error('Order not found or not authorized to update')
     }
 
     return true

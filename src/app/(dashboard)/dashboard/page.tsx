@@ -78,7 +78,7 @@ export default async function OrdersPage() {
     const WEEKLY_GOAL = 500
     const MONTHLY_GOAL = 2500
 
-  const { customOrdersThisMonth, totalCustomSalesThisMonth, customOrderChange, customSalesChange } = await getCustomOrderStats()
+  //const { customOrdersThisMonth, totalCustomSalesThisMonth, customOrderChange, customSalesChange } = await getCustomOrderStats()
 
   return (
   <div className='lg:ml-12 flex flex-col'>
@@ -91,7 +91,7 @@ export default async function OrdersPage() {
       <TabsContent value="custom">
       <div className="container mx-auto py-10 space-y-10">
       <div className="grid gap-4 grid-cols-2 lg:grid-cols-4">
-        <Card>
+        {/* <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
               Orders This Month
@@ -120,7 +120,7 @@ export default async function OrdersPage() {
               {customSalesChange.toFixed(2)}% from last month
             </p>
           </CardContent>
-        </Card>
+        </Card> */}
         <Card>
                 <CardHeader className='pb-2'>
                   <CardDescription>Goal: Last Week</CardDescription>
@@ -158,9 +158,9 @@ export default async function OrdersPage() {
                 </CardFooter>
               </Card>
       </div>
-        <CustomOrderTable
+        {/* <CustomOrderTable
         orders={customOrders}
-        />
+        /> */}
         </div>
       </TabsContent>
       <TabsContent value="printful">
