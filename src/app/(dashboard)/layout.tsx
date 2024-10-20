@@ -24,16 +24,16 @@ export default async function DashboardLayout({
         } */
 
     //Kinde Auth
-    const { getUser } = getKindeServerSession()
+   /*  const { getUser } = getKindeServerSession()
     const user = await getUser()
-  /* 
+  
     const ADMIN_EMAIL = process.env.ADMIN_EMAIL
   
     if (!user || user.email !== ADMIN_EMAIL) {
       return notFound()
     } */
 
-    console.log("user Id", user.id)
+    //console.log("user Id", user.id)
 
     /* if (!user || !user.id) {
       console.log('User on layout page is null or missing id'); // Add this line
