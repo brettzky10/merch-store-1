@@ -20,13 +20,18 @@ import { formatPrice } from '@/lib/utils'
 
 export default async function OrdersPage() {
 
-  const [orders, ordersThisMonth, totalSalesThisMonth, customOrders ] = await Promise.all([
+ /*  const [orders, ordersThisMonth, totalSalesThisMonth, customOrders ] = await Promise.all([
     getOrders(),
     getOrdersThisMonth(),
     getTotalSalesThisMonth(),
     getCustomOrders(),
     
-  ])
+  ]) */
+
+  const orders = await getOrders()
+  const ordersThisMonth = await getOrdersThisMonth()
+  const totalSalesThisMonth = await getTotalSalesThisMonth()
+  const customOrders = await getCustomOrders()
   
 
   
