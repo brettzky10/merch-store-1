@@ -138,22 +138,24 @@ export async function createOrderFromPrintful(printfulData: any) {
 //Custom Orders
 
 export async function getCustomOrders() {
-  try {
-    const { getUser } = getKindeServerSession();
+  
+  const { getUser } = getKindeServerSession();
     const user = await getUser();
 
     if (!user || !user.id) {
       throw new Error('Unauthorized');
     }
 
-    const owner = await prismadb.owner.findUnique({
-      where: { 
-        id: user.id,
-        user_id: user.id
-    },
-    });
+    try {
 
-    /* if (!owner) {
+      let owner = await prismadb.owner.findUnique({
+        where: { 
+          id: user.id,
+          user_id: user.id
+      },
+      });
+/* 
+    if (!owner) {
       // If the owner doesn't exist, create a new one
       owner = await prismadb.owner.create({
         data: {
@@ -164,19 +166,24 @@ export async function getCustomOrders() {
             : user.email,
         },
       });
+
+      
     } */
+    if (owner) {
 
-    const orders = await prismadb.order.findMany({
-      where: { ownerId: owner?.id },
-      include: {
-        shippingAddress: true,
-        billingAddress: true,
-        configuration: true,
-      },
-      orderBy: { createdAt: 'desc' },
-    });
-
+      const orders = await prismadb.order.findMany({
+        where: { ownerId: owner.id },
+        include: {
+          shippingAddress: true,
+          billingAddress: true,
+          configuration: true,
+        },
+        orderBy: { createdAt: 'desc' },
+      });
     return orders;
+    }else{
+      throw new Error('Failed to fetch orders');
+    }
   } catch (error) {
     console.error('Failed to fetch orders:', error);
     throw new Error('Failed to fetch orders');
@@ -287,14 +294,18 @@ export async function getRecentCustomOrders() {
 
 
 export async function updateOrderStatus(orderId: string, newStatus: orderStatus) {
-  try {
-    const { getUser } = getKindeServerSession()
+
+  const { getUser } = getKindeServerSession()
     const user = await getUser()
 
     if (!user || !user.id) {
       throw new Error('Unauthorized')
     }
 
+
+
+  try {
+    
     const owner = await prismadb.owner.findUnique({
       where: { id: user.id, user_id: user.id },
     })
