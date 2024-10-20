@@ -22,23 +22,8 @@ const InventoryPage = async ({
     
 })=> {
 
-  /*   const supabase = createClient();
-  
-  const {
-      data: { user },
-  } = await supabase.auth.getUser();
-    if (!user) return */
-
     const { getUser } = getKindeServerSession()
     const user = await getUser()
-
-    const ownerInfo = await prismadb.owner.findUnique({
-      where: {
-        id: user.id,
-          user_id: user.id,
-          //email: user.email,
-      },
-    })
 
     const products = await prismadb.owner.findUnique({
         where: {
@@ -82,7 +67,7 @@ const InventoryPage = async ({
                 </BreadcrumbList>
             </Breadcrumb>
             
-            <ProductClient data={formattedProducts} />
+            {/* <ProductClient data={formattedProducts} /> */}
         </div>
 
     </div>

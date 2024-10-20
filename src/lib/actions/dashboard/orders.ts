@@ -142,9 +142,9 @@ export async function getCustomOrders() {
   const { getUser } = getKindeServerSession();
     const user = await getUser();
 
-    if (!user || !user.id) {
+    /* if (!user || !user.id) {
       throw new Error('Unauthorized');
-    }
+    } */
 
     try {
 
@@ -197,9 +197,9 @@ export async function getCustomOrderStats() {
   const { getUser } = getKindeServerSession()
   const user = await getUser()
 
-  if (!user || !user.id) {
+  /* if (!user || !user.id) {
     throw new Error("Unauthorized")
-  }
+  } */
 
   const owner = await prismadb.owner.findUnique({
     where: { id: user.id, user_id: user.id },
@@ -267,9 +267,9 @@ export async function getRecentCustomOrders() {
   const { getUser } = getKindeServerSession()
   const user = await getUser()
 
-  if (!user || !user.id) {
+  /* if (!user || !user.id) {
     throw new Error("Unauthorized")
-  }
+  } */
 
   const owner = await prismadb.owner.findUnique({
     where: { id: user.id, user_id: user.id },
@@ -298,9 +298,9 @@ export async function updateOrderStatus(orderId: string, newStatus: orderStatus)
   const { getUser } = getKindeServerSession()
     const user = await getUser()
 
-    if (!user || !user.id) {
+   /*  if (!user || !user.id) {
       throw new Error('Unauthorized')
-    }
+    } */
 
 
 
