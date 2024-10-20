@@ -25,6 +25,11 @@ const InventoryPage = async ({
     const { getUser } = getKindeServerSession()
     const user = await getUser()
 
+    if (!user || !user.id) {
+        console.log('User is null or missing id'); 
+        throw new Error('Unauthorized');
+      }
+
     const products = await prismadb.owner.findUnique({
         where: {
             id: user.id,

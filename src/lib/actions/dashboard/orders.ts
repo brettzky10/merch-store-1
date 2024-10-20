@@ -198,6 +198,7 @@ export async function getCustomOrderStats() {
   const user = await getUser()
 
   if (!user || !user.id) {
+    console.log("user Id", user.id)
     throw new Error("Unauthorized")
   }
 
